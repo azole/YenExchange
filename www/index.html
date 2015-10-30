@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html ng-app="exchangeApp">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+  <link rel="stylesheet" type="text/css" href="css/index.css" />
+  <link rel="stylesheet" href="lib/css/jquery.mobile-1.4.2.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/app.css" />
+
+  <script type="text/javascript" src="lib/js/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="lib/js/jquery.mobile.router.min.js"></script>
+  <script type="text/javascript" src="lib/js/jquery.mobile-1.4.2.min.js"></script>
+  <script type="text/javascript" src="lib/js/angular.min.js"></script>
+  <title>Exchange</title>
+</head>
+
+<body ng-controller="calcCtrl">
+  <div data-role="page" id="mainPage">
+    <div data-role="header">
+      <h1>{{fromCurrency}} → {{toCurrency}}</h1>
+      <a href="#settingsPage" id='settingsButton' class="ui-btn-right" data-role="button" data-icon="gear">Settings</a>
+    </div>
+    <div data-role="content">
+      <div>
+        <span class="dataDisplay fromSpan">{{from | number}}</span> x
+        <span class="dataDisplay rateSpan">{{rate}}</span> =
+        <span class="dataDisplay resultSpan">{{from*rate | number:1}}</span>
+      </div>
+      <div>
+        加上消費稅<span class="dataDisplay taxSpan">{{taxRate | percentage}}</span>:
+        <sapn class="span14">{{fromSign}} {{from*(1+taxRate) | number:0}}</sapn> = 
+        <span class="dataDisplay resultSpan">{{from*(1+taxRate)*rate | number:0}}</span>
+      </div>
+      <div>
+        扣除消費稅<span class="dataDisplay taxSpan">{{taxRate | percentage}}</span>:
+        <span class="span14">{{fromSign}} {{from/(1+taxRate) | number:0}}</span> =
+        <span class="dataDisplay resultSpan">{{(from/(1+taxRate))*rate | number:0}}</span> 
+      </div>
+      <div>
+        <div class="btnContainer">
+          <span class="ui-corner-all numBtn" ng-click="addNum(1)">1</span>
+          <span class="ui-corner-all numBtn" ng-click="addNum(2)">2</span>
+          <span class="ui-corner-all numBtn" ng-click="addNum(3)">3</span>
+          <span class="ui-corner-all numBtn" ng-click="advNum('*')">乘</span>
+        </div>
+        <div class="btnContainer">
+          <span class="ui-corner-all numBtn" ng-click="addNum(4)">4</span>
+          <span class="ui-corner-all numBtn" ng-click="addNum(5)">5</span>
+          <span class="ui-corner-all numBtn" ng-click="addNum(6)">6</span>
+          <span class="ui-corner-all numBtn" ng-click="advNum('/')">除</span>
+        </div>
+        <div class="btnContainer">
+          <span class="ui-corner-all numBtn" ng-click="addNum(7)">7</span>
+          <span class="ui-corner-all numBtn" ng-click="addNum(8)">8</span>
+          <span class="ui-corner-all numBtn" ng-click="addNum(9)">9</span>
+        </div>
+        <div class="btnContainer">
+          <span class="ui-corner-all numBtn resetBtn" ng-click="reset()">C</span>
+          <span class="ui-corner-all numBtn resetBtn" ng-click="addNum(0)">0</span> 
+          <span class="ui-corner-all numBtn resetBtn" ng-click="delete()">←</span>
+        </div>
+      </div>
+      <div class="span14">税込：含稅價格，若可退稅，則可扣{{taxRate | percentage}}。</div>
+      <div class="span14">税抜：未稅價格，若不可退稅，結賬時需再加上{{taxRate | percentage}}。</div>
+    </div>
+  </div>
+  <div data-role="page" id="settingsPage" data-add-back-btn="true">
+    <div data-role="header">
+      <h1>Exchange - Settings</h1>
+    </div>
+    <div data-role="content">
+      匯率：<input type="number" ng-model="rate">
+      <a href="#mainPage" class='ui-btn ui-corner-all ui-btn-inline ui-icon-refresh ui-btn-icon-left' ng-click="setDefault()">{{defaultRate}}</a>
+      <a href="#mainPage" class="ui-btn ui-corner-all ui-btn-inline ui-icon-check ui-btn-icon-left" data-rel="back" ng-click="setRate()">確定</a>
+    </div>
+  </div>
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="lib/js/fastclick.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+</body>
+
+</html>

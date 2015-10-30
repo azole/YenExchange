@@ -1,0 +1,37 @@
+.calendar {
+  width: 840px;
+}
+.calendarBox {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 600px;
+  display: inline-block;
+}
+.cday {
+  width: 120px;
+  height: 120px;
+  display: inline-block;
+  border-top: 1px solid #CCCCCC;
+  padding: 1px 0 0 5px;
+}
+.wheader {
+  width: 120px;
+  height: 24px;
+  display: inline-block;
+  padding: 1px 0 0 5px;
+  background-color: #DDDDDD;
+  border-bottom: 1px solid #BBB;
+}
+.weekend {
+  background-color: #DDD;
+}
+.week-at {
+  border-top: 5px solid #ebccd1;
+}
+.day-at {
+  border-top: 5px solid #a94442;
+}
+.listview {
+  width: 840px;
+}
+

@@ -1,0 +1,45 @@
+.dataDisplay {
+  display: inline-block;
+  border-bottom: 1px dashed #AAA;
+  text-align: center;
+}
+
+.rateSpan {
+  font-size:  14px;
+  width: 50px;
+}
+
+.fromSpan {
+  width: 100px;
+}
+
+.taxSpan {
+  font-size: 14px;
+  width: 20px;
+}
+
+.resultSpan {
+  font-size: 20px;
+  width: 90px;
+  border-bottom: 1px solid red;
+}
+
+.btnContainer {
+  width: 96%;
+}
+
+.numBtn {
+  box-sizing: border-box; 
+  display: inline-block;
+  background-color: #CCC;
+  width: 22%;
+  height: 60px;
+  font-size: 40px;
+  text-align: center;
+  padding-top:8px;
+  margin: 1px;
+}
+
+.span14 {
+  font-size: 14px;
+}
