@@ -75,11 +75,13 @@
           <span class="ui-corner-all numBtn" ng-click="addNum(7)">7</span>
           <span class="ui-corner-all numBtn" ng-click="addNum(8)">8</span>
           <span class="ui-corner-all numBtn" ng-click="addNum(9)">9</span>
+          <span class="ui-corner-all numBtn" ng-click="calculate()"> = </span>
         </div>
         <div class="btnContainer">
           <span class="ui-corner-all numBtn resetBtn" ng-click="reset()">C</span>
           <span class="ui-corner-all numBtn resetBtn" ng-click="addNum(0)">0</span> 
           <span class="ui-corner-all numBtn resetBtn" ng-click="delete()">←</span>
+          <span class="dataDisplay divSpan">{{div}}</span>
         </div>
       </div>
       <div class="span14">税込：含稅價格，若可退稅，則可扣{{taxRate | percentage}}。</div>
